@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Offline Media Player</title>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: #ffffff; text-align: center; padding: 50px; }
+        .player-card { background: #1e1e1e; padding: 30px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        input { margin: 20px 0; background: #333; color: white; padding: 10px; border-radius: 5px; border: none; }
+        audio { width: 100%; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="player-card">
+        <h2>Unblocked Offline Player</h2>
+        <p>Select any music file from your Chromebook storage:</p>
+        <input type="file" id="audioFile" accept="audio/*"><br>
+        <audio id="audioPlayer" controls loop></audio>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('audioFile');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                audioPlayer.src = fileURL;
+                audioPlayer.play();
+            }
+        });
+    </script>
+</body>
+</html>
